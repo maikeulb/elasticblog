@@ -1,0 +1,37 @@
+<nav>
+  <div class="ui borderless main menu">
+    <div class="ui text container">
+      <a class="header item" href="{{ url_for('main.index') }}">
+        Elastic Blog
+      </a>
+
+      <a href="{{ url_for('main.explore') }}" class="item">Explore</a>
+      {% if g.search_form %}
+          <div class="item">
+            <form class="ui form" method="get" action="{{ url_for('main.search') }}">
+              <div class="field ui icon input">
+                {{ g.search_form.q(placeholder=g.search_form.q.label.text) }}
+                <i class="search link icon"></i>
+              </div>
+            </form>
+          </div>
+      {% endif %}
+
+      {% if current_user.is_anonymous %}
+      <div class="ui right item">
+        <a href="{{ url_for('account.login') }}" class="item">Login</a>
+        <a href="{{ url_for('account.register') }}" class="item">Register</a>
+      </div>
+
+      {% else %}
+      <div class="ui right floated dropdown item">
+        Hello {{ current_user.username }} <i class="dropdown icon"></i>
+        <div class="menu">
+          <a href="{{ url_for('account.logout') }}" class="item">Logout</a>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</nav>
