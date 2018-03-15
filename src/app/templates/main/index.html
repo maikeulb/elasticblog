@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+  <main class="ui text container">
+
+    <h1 class="ui header">
+      <div class="content">
+        Hi, {{ current_user.username }}!
+      </div>
+    </h1>
+
+    {% if form %}
+      <form action="" method="post" class="ui form">
+        <div class="ui segment">
+          {{ form.hidden_tag() }}
+            <div class="field">
+              {{ form.post.label }}<br>
+              {{ form.post }}
+            </div>
+          {{ form.submit(class="ui button") }}
+          <div class="ui error message"></div>
+        </div>
+      </form>
+    {% endif %}
+
+    {% for post in posts %}
+      {% include 'main/_post.html' %}
+    {% endfor %}
+
+    {% include '/shared/_pagination.html' %}
+
+  </main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
