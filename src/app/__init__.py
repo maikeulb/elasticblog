@@ -6,7 +6,6 @@ from flask import(
     render_template,
     request,
     current_app)
-from app.account import account as account_bp
 from app.extensions import(
     bcrypt,
     cache,
@@ -15,6 +14,7 @@ from app.extensions import(
     login,
     migrate,
     moment)
+from app.account import account as account_bp
 from app.main import main as main_bp
 from elasticsearch import Elasticsearch
 
