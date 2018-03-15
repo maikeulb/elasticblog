@@ -1,12 +1,15 @@
 from flask import request
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, IntegerField, SelectField, TextAreaField, SubmitField
 from wtforms.validators import DataRequired, Length
 from app.models import User
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField('Say something', validators=[DataRequired()])
+    title = TextAreaField('Say something', validators=[DataRequired()])
+    body = TextAreaField('Say something', validators=[DataRequired()])
+    category_id = SelectField('Mount', coerce=int, validators=[DataRequired()])
+    tags = TextAreaField('Say something', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 

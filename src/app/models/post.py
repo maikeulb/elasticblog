@@ -3,6 +3,8 @@ from datetime import datetime
 from time import time
 from flask import current_app
 from app.mixins import SearchableMixin
+from app.models.tag import Tag
+from app.models.catgory import Category
 
 tag_posts = db.Table(
     'tag_posts',
@@ -20,10 +22,17 @@ class Post(SearchableMixin, db.Model):
     title = db.Column(db.String(45))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+
+    categories = db.relationship(
+        'Category',
+        backref='post',
+    )
 
     tags = db.relationship(
-        "Tag",
-        backref='post',
+        'Tag',
+        secondary=tag_posts,
+        backref='post'
     )
 
 

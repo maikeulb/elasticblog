@@ -14,8 +14,20 @@
         <div class="ui segment">
           {{ form.hidden_tag() }}
             <div class="field">
-              {{ form.post.label }}<br>
-              {{ form.post }}
+              {{ form.title.label }}<br>
+              {{ form.title }}
+            </div>
+            <div class="field">
+              {{ form.body.label }}<br>
+              {{ form.body }}
+            </div>
+            <div class="field">
+              {{ form.category_id.label }}<br>
+              {{ form.category_id }}
+            </div>
+            <div class="field">
+              {{ form.tags.label }}<br>
+              {{ form.tags }}
             </div>
           {{ form.submit(class="ui button") }}
           <div class="ui error message"></div>

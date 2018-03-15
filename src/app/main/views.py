@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import(
+from flask import (
     render_template,
     flash, redirect,
     url_for,
@@ -10,13 +10,15 @@ from flask import(
 from flask_login import current_user, login_required
 from app.extensions import login, db
 from app.main import main
-from app.main.forms import(
+from app.main.forms import (
     PostForm,
     SearchForm,
 )
-from app.models import(
+from app.models import (
     User,
     Post,
+    Tag,
+    Category,
 )
 from flask import jsonify
 
@@ -34,6 +36,7 @@ def before_request():
 @login_required
 def index():
     form = PostForm()
+    form.category_id.choices = [(c.id, c.name) for c in categories]
     if form.validate_on_submit():
         post = Post(body=form.post.data,
                     author=current_user)
@@ -51,6 +54,8 @@ def index():
 @login_required
 def explore():
     page = request.args.get('page', 1, type=int)
+    tag = Tag.query.getall()
+    categorys = Category.query.getall()
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('main.explore', page=posts.next_num) \
@@ -59,6 +64,8 @@ def explore():
         if posts.has_prev else None
     return render_template('main/index.html',
                            title='Explore',
+                           tags=tag,
+                           categorys=categorys,
                            posts=posts.items,
                            next_url=next_url,
                            prev_url=prev_url)
