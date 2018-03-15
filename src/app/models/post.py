@@ -2,9 +2,9 @@ from app.extensions import db
 from datetime import datetime
 from time import time
 from flask import current_app
-from app.mixins import SearchableMixin
+from app.models.mixins import SearchableMixin
 from app.models.tag import Tag
-from app.models.catgory import Category
+from app.models.category import Category
 
 tag_posts = db.Table(
     'tag_posts',
@@ -15,7 +15,7 @@ tag_posts = db.Table(
 
 class Post(SearchableMixin, db.Model):
     __tablename__ = 'posts'
-    __searchable__ = ['body', 'category']
+    __searchable__ = ['body']
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -23,6 +23,7 @@ class Post(SearchableMixin, db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    tag_names = db.Column(db.String(140))
 
     categories = db.relationship(
         'Category',

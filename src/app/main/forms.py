@@ -6,10 +6,11 @@ from app.models import User
 
 
 class PostForm(FlaskForm):
-    title = TextAreaField('Say something', validators=[DataRequired()])
-    body = TextAreaField('Say something', validators=[DataRequired()])
-    category_id = SelectField('Mount', coerce=int, validators=[DataRequired()])
-    tags = TextAreaField('Say something', validators=[DataRequired()])
+    title = TextAreaField('Title', validators=[DataRequired()])
+    body = TextAreaField('Body', validators=[DataRequired()])
+    category_id = SelectField('Category', coerce=int,
+                              validators=[DataRequired()])
+    tags = TextAreaField('Tags', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 

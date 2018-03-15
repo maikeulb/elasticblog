@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 from flask import (
     render_template,
@@ -26,8 +27,6 @@ from flask import jsonify
 @main.before_app_request
 def before_request():
     if current_user.is_authenticated:
-        current_user.last_seen = datetime.utcnow()
-        db.session.commit()
         g.search_form = SearchForm()
 
 
@@ -36,10 +35,18 @@ def before_request():
 @login_required
 def index():
     form = PostForm()
+    categories = Category.query.all()
+    tags = Tag.query.all()
     form.category_id.choices = [(c.id, c.name) for c in categories]
     if form.validate_on_submit():
-        post = Post(body=form.post.data,
-                    author=current_user)
+        print(current_user, sys.stdout)
+        print(form.tags.data, sys.stdout)
+        print(form.category_id.data, sys.stdout)
+        post = Post(title=form.title.data,
+                    body=form.body.data,
+                    author=current_user,
+                    category_id=form.category_id.data,
+                    tag_names=[form.tags.data])
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
@@ -47,6 +54,8 @@ def index():
 
     return render_template('main/index.html',
                            title='Home',
+                           tags=tags,
+                           categories=categories,
                            form=form)
 
 
@@ -54,8 +63,8 @@ def index():
 @login_required
 def explore():
     page = request.args.get('page', 1, type=int)
-    tag = Tag.query.getall()
-    categorys = Category.query.getall()
+    tags = Tag.query.all()
+    categories = Category.query.all()
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, current_app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('main.explore', page=posts.next_num) \
@@ -64,8 +73,8 @@ def explore():
         if posts.has_prev else None
     return render_template('main/index.html',
                            title='Explore',
-                           tags=tag,
-                           categorys=categorys,
+                           tags=tags,
+                           categories=categories,
                            posts=posts.items,
                            next_url=next_url,
                            prev_url=prev_url)
@@ -76,6 +85,8 @@ def explore():
 def search():
     if not g.search_form.validate():
         return redirect(url_for('main.explore'))
+    tags = Tag.query.all()
+    categories = Category.query.all()
     page = request.args.get('page', 1, type=int)
     posts, total = Post.search(g.search_form.q.data, page,
                                current_app.config['POSTS_PER_PAGE'])
@@ -86,5 +97,7 @@ def search():
     return render_template('main/search.html',
                            title='Search',
                            posts=posts,
+                           tags=tags,
+                           categories=categories,
                            next_url=next_url,
                            prev_url=prev_url)

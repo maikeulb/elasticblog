@@ -21,7 +21,8 @@ class User(UserMixin, db.Model):
 
     posts = db.relationship(
         'Post',
-        backref='author'
+        backref='author',
+        lazy='dynamic'
     )
 
     def __init__(self, username, email, password=None, **kwargs):
@@ -36,6 +37,7 @@ class User(UserMixin, db.Model):
 
     def check_password(self, value):
         return bcrypt.check_password_hash(self.password, value)
+
 
 @login.user_loader
 def load_user(id):

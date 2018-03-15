@@ -1,4 +1,4 @@
-from models import db
+from app.extensions import db
 
 
 class Tag(db.Model):
