@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    {% if title %}
+      <title>{{ title }} - ElasticBlog</title>
+    {% else %}
+      <title>Welcome to ElasticBlog</title>
+    {% endif %}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js'></script>
+      <link rel="icon" type="image/x-icon" href="favicon.ico">
+  </head>
+
+  <body>
+    {% block navbar %}
+      {% include '/shared/_navbar.html' %}
+    {% endblock %}
+
+    {% block content %}
+      <div class="container">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <script>
+              var messages = {{ messages | safe }};
+              for (var i=0; i<messages.length; i++) {
+                new Noty({
+                  theme: 'semanticui',
+                  type: 'info',
+                  text: messages[i]
+                }).setTimeout(2000).show();
+              } 
+            </script>
+          {% endif %}
+        {% endwith %}
+        {% block app_content %}{% endblock %}
+      </div>
+    {% endblock %}
+
+    {% include '/shared/_footer.html' %}
+
+    {% endif %}
+
+    {% block scripts %}
+    {{ moment.include_moment() }}
+    {% endblock %}
+    {% block js %}{% endblock %}
+  </body>
+</html>
