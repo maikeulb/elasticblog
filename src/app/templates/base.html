@@ -40,10 +40,8 @@
 
     {% include '/shared/_footer.html' %}
 
-    {% endif %}
-
     {% block scripts %}
-    {{ moment.include_moment() }}
+      {{ moment.include_moment() }}
     {% endblock %}
     {% block js %}{% endblock %}
   </body>

@@ -22,9 +22,6 @@
           {{ form.password }}
         </div>
         <div class="field">
-          <div class="ui checkbox">
-            {{ form.remember_me() }} {{ form.remember_me.label }}
-          </div>
         </div>
         {{ form.submit(class="ui fluid large submit button") }}
         {% if form.errors %}
@@ -50,35 +47,7 @@
    </div>
   </div>
   <div class="ui center aligned container">
-    <div class="ui message">
-      Forgot Your Password? <a href="{{
-        url_for('account.reset_password_request') }}"> Click to Reset!</a>
-   </div>
   </div>
-
-    {% block js %}
-
-    <script>
-    $('.message .close')
-      .on('click', function() {
-        $(this)
-          .closest('.message')
-          .transition('fade')
-        ;
-      })
-    ;
-
-    $('.ui.form')
-      .form({
-        fields: {
-          username : 'empty',
-          email: ['email', 'empty'],
-        }
-      })
-    ;
-
-    </script>
-     {% endblock %}
 
 </main>
 {% endblock %}

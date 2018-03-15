@@ -2,14 +2,8 @@
   <thead>
     <tr>
       <th class="single line">
-      <img class="ui avatar image" src="{{ post.author.avatar(70) }}" />
       <span>
           {% set user_link %}
-            <span class="user_popup">
-              <a href="{{ url_for('main.user', username=post.author.username) }}">
-                {{ post.author.username }}
-              </a>
-            </span>
           {% endset %}
           {{ user_link }} said {{ moment(post.timestamp).fromNow() }}
           <br>
