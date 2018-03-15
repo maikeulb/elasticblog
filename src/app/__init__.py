@@ -8,7 +8,6 @@ from flask import(
     current_app)
 from app.extensions import(
     bcrypt,
-    cache,
     csrf_protect,
     db,
     login,
