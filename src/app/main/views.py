@@ -42,11 +42,12 @@ def index():
         print(current_user, sys.stdout)
         print(form.tags.data, sys.stdout)
         print(form.category_id.data, sys.stdout)
+        tag = Tag(name=form.tags.data)
         post = Post(title=form.title.data,
                     body=form.body.data,
                     author=current_user,
                     category_id=form.category_id.data,
-                    tag_names=[form.tags.data])
+                    tags=[tag])
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')

@@ -22,13 +22,29 @@
     </tr>
   </tbody>
 </table>
-<span class="tag-links">
-  Tagged:
-  {% for tag in post.tags %}
-        <span><a rel="tag" href="#">{{tag.name}}</a></span>
-  {% endfor %}
-</span>
-<a title="{{post.categorys.name}}" href="#">{{post.categories.name}}</a>
+<div>
+  <span class="tag-links">
+    Tagged:
+    {% for tag in post.tags %}
+          <span><a rel="tag" href="#">{{tag.name}}</a></span>
+    {% endfor %}
+  </span>
+</div>
+<div>
+  <span class="category-links">
+    Category:
+    <a title="{{post.category.name}}" href="#">{{post.category.name}}</a>
+  </span>
+</div>
+<span class="category-links">
+
+
+
+
+
+
+
+<a title="{{post.category.name}}" href="#">{{post.category.name}}</a>
 
 
 

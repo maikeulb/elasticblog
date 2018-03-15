@@ -23,9 +23,8 @@ class Post(SearchableMixin, db.Model):
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
-    tag_names = db.Column(db.String(140))
 
-    categories = db.relationship(
+    category = db.relationship(
         'Category',
         backref='post',
     )
