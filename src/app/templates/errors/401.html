@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+
+{% block page_title %}Unauthorized{% endblock %}
+
+{% block app_content %}
+<div class="ui inverted vertical masthead center aligned segment">
+  <div class="ui text container">
+    <h1 class="ui inverted header">
+      401
+    </h1>
+    <p>You are not authorized to see this page. Please <a href="{{ url_for('public.home')}}">log in</a> or
+    <a href="{{ url_for('account.register') }}">create a new account</a>.
+  </div>
+</div>
+{% endblock %}
