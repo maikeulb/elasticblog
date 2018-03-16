@@ -15,7 +15,7 @@ tag_posts = db.Table(
 
 class Post(SearchableMixin, db.Model):
     __tablename__ = 'posts'
-    __searchable__ = ['body', 'title']
+    __searchable__ = ['body', 'title', 'category_name']
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -34,6 +34,10 @@ class Post(SearchableMixin, db.Model):
         secondary=tag_posts,
         backref='post'
     )
+
+    @property
+    def category_name(self):
+        return self.category.name
 
 
 db.event.listen(db.session, 'before_commit', Post.before_commit)
