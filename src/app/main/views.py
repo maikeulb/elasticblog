@@ -39,15 +39,18 @@ def index():
     tags = Tag.query.all()
     form.category_id.choices = [(c.id, c.name) for c in categories]
     if form.validate_on_submit():
-        print(current_user, sys.stdout)
-        print(form.tags.data, sys.stdout)
-        print(form.category_id.data, sys.stdout)
-        tag = Tag(name=form.tags.data)
+        tag_list = form.tags.data.split()
+        _tags = [None] * len(tag_list)
+        for i, t in enumerate(tag_list):
+            _tags[i] = Tag.query.filter_by(name=t).first()
+            if _tags[i] is None:
+                _tags[i] = Tag(name=t)
+
         post = Post(title=form.title.data,
                     body=form.body.data,
                     author=current_user,
                     category_id=form.category_id.data,
-                    tags=[tag])
+                    tags=_tags)
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
