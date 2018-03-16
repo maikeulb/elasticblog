@@ -9,7 +9,8 @@
 
       {% include "shared/_sidenav_aside.html" %}
 
-      <div class="container column is-10">
+      <div class="container column is-10-desktop">
+
         {% if g.search_form %}
           <form class="field" method="get" action="{{ url_for('main.search') }}">
             <div class="control is-expanded">

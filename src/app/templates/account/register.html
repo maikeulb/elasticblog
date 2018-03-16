@@ -1,61 +1,53 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<main class="ui text container">
+<main class="container column is-6-desktop">
 
-  <h2 class="ui header">
-    <div class="content">
+  <h2 class="title">
       Register
-    </div>
   </h2>
 
-  <form action="" method="post" class="ui form">
-    <div class="ui segment">
-      {{ form.hidden_tag() }}
-        <div class="field">
-          {{ form.username.label }}
-          {{ form.username }}
-        </div>
-        <div class="field">
-          {{ form.email.label }}
-          {{ form.email }}
-        </div>
-        <div class="field">
-          {{ form.password.label }}
-          {{ form.password }}
-        </div>
-        <div class="field">
-          {{ form.confirm.label }}
-          {{ form.confirm }}
-        </div>
-        {{ form.submit(class="ui fluid large submit button") }}
-        {% if form.errors %}
-          <div class="ui negative message">
-            <i class="close icon"></i>
-            {% for error in form.username.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-            {% for error in form.email.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-            {% for error in form.password.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
-            {% for error in form.confirm.errors %}
-              <li>{{ error }}</li>
-            {% endfor %}
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+      <div class="field">
+        {{ form.username.label(class_="label") }}
+        {{ form.username(class_="input") }}
+      </div>
+      <div class="field">
+        {{ form.email.label(class_="label") }}
+        {{ form.email(class_="input") }}
+      </div>
+      <div class="field">
+        {{ form.password.label(class_="label") }}
+        {{ form.password(class_="input") }}
+      </div>
+      <div class="field">
+        {{ form.confirm.label(class_="label") }}
+        {{ form.confirm(class_="input") }}
+      </div>
+      {{ form.submit(class="button") }}
+      {% if form.errors %}
+        <div class="message is-danger" style="padding-top:20px">
+          <div class="message-body">
+          {% for error in form.username.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+          {% for error in form.email.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+          {% for error in form.password.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
+          {% for error in form.confirm.errors %}
+            <span>{{ error }}</span>
+          {% endfor %}
           </div>
-        {% endif%}
-        {% if not form.errors %}
-          <div class="ui error message"></div>
-        {% endif%}
-    </div>
+        </div>
+    {% endif%}
   </form>
 
-  <div class="ui center aligned container">
-    <div class="ui message">
-      Already registered? <a href="{{ url_for('account.login') }}">Click to Login!</a>
-    </div>
+  <div class="container" style="padding-top:20px">
+    Already registered? <a href="{{ url_for('account.login') }}">Click to Login!</a>
   </div>
 
 </main>

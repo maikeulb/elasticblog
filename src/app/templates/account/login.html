@@ -1,52 +1,41 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-<main class="ui text container">
+<main class="container column is-6-desktop">
 
-  <h2 class="ui header">
-    <div class="content">
+  <h2 class="title">
       Login
-    </div>
   </h2>
 
-  <form action="" method="post" class="ui form">
-    <div class="ui segment">
+  <form action="" method="post" >
       {{ form.hidden_tag() }}
         <div class="field">
-          {{ form.username.label }}
-          {{ form.username }}
-        </div>
-
-        <div class="field">
-          {{ form.password.label }}
-          {{ form.password }}
+          {{ form.username.label(class_="label") }}
+          {{ form.username(class_="input") }}
         </div>
         <div class="field">
+          {{ form.password.label(class_="label") }}
+          {{ form.password(class_="input") }}
         </div>
-        {{ form.submit(class="ui fluid large submit button") }}
+        <div class="field">
+        </div>
+        {{ form.submit(class="button") }}
         {% if form.errors %}
-          <div class="ui negative message">
-            <i class="close icon"></i>
+          <div class="message is-danger" style="padding-top:20px">
+            <div class="message-body">
             {% for error in form.password.errors %}
-              <li>{{ error }}</li>
+              <span="text-is-red">{{ error }}</span>
             {% endfor %}
             {% for error in form.username.errors %}
-              <li>{{ error }}</li>
+              <span>{{ error }}</span>
             {% endfor %}
+            </div>
           </div>
         {% endif%}
-        {% if not form.errors %}
-          <div class="ui error message"></div>
-        {% endif%}
-    </div>
   </form>
 
-  <div class="ui center aligned container">
-    <div class="ui message">
-      New User? <a href="{{ url_for('account.register') }}"> Click to Register!</a>
-   </div>
-  </div>
-  <div class="ui center aligned container">
+  <div class="container" style="padding-top:20px">
+      New User? <a href="{{ url_for('account.register') }}">Click to Register!</a>
   </div>
 
 </main>
