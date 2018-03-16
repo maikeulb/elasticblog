@@ -15,7 +15,8 @@ tag_posts = db.Table(
 
 class Post(SearchableMixin, db.Model):
     __tablename__ = 'posts'
-    __searchable__ = ['body', 'title', 'category_name', 'tag_names']
+    __searchable__ = ['body', 'title', 'category_name', 'tag_names',
+                      'author_username']
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -42,6 +43,10 @@ class Post(SearchableMixin, db.Model):
     @property
     def tag_names(self):
         return [t.name for t in self.tags]
+
+    @property
+    def author_username(self):
+        return self.author.username
 
 
 db.event.listen(db.session, 'before_commit', Post.before_commit)

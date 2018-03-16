@@ -54,7 +54,7 @@ def index():
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
-        return redirect(url_for('main.index'))
+        return redirect(url_for('main.explore'))
 
     return render_template('main/index.html',
                            title='Home',
@@ -75,7 +75,7 @@ def explore():
         if posts.has_next else None
     prev_url = url_for('main.explore', page=posts.prev_num) \
         if posts.has_prev else None
-    return render_template('main/index.html',
+    return render_template('main/explore.html',
                            title='Explore',
                            tags=tags,
                            categories=categories,

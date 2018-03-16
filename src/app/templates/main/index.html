@@ -1,46 +1,44 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-  <main class="ui text container">
-
-    <h1 class="ui header">
-      <div class="content">
-        Hi, {{ current_user.username }}!
-      </div>
-    </h1>
-
+    <main class="container">
+    <div class = "columns is-centered">
+    <div class = "column is-two-thirds">
     {% if form %}
-      <form action="" method="post" class="ui form">
-        <div class="ui segment">
+      <form action="" method="post" class="field">
           {{ form.hidden_tag() }}
-            <div class="field">
-              {{ form.title.label }}<br>
-              {{ form.title }}
+        <div class="field">
+            <div class="control">
+              {{ form.title.label(class_="label") }}<br>
+              {{ form.title(class_="input") }}
             </div>
-            <div class="field">
-              {{ form.body.label }}<br>
-              {{ form.body }}
             </div>
-            <div class="field">
-              {{ form.category_id.label }}<br>
-              {{ form.category_id }}
+        <div class="field">
+            <div class="control">
+              {{ form.body.label(class_="label") }}<br>
+              {{ form.body(class_="textarea") }}
             </div>
-            <div class="field">
-              {{ form.tags.label }}<br>
-              {{ form.tags }}
+            </div>
+        <div class="field">
+            <div class="control">
+              {{ form.category_id.label(class_="label") }}<br>
+              <div class="select">
+                {{ form.category_id(class_="select is-fullwidth") }}
+              </div>
+            </div>
+            </div>
+        <div class="field">
+            <div class="control">
+              {{ form.tags.label(class_="label") }}<br>
+              {{ form.tags(class_="input") }}
+            </div>
             </div>
           {{ form.submit(class="ui button") }}
-          <div class="ui error message"></div>
-        </div>
       </form>
     {% endif %}
 
-    {% for post in posts %}
-      {% include 'main/_post.html' %}
-    {% endfor %}
-
-    {% include '/shared/_pagination.html' %}
-
+  </div>
+  </div>
   </main>
 {% endblock %}
 

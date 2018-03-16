@@ -1,37 +1,67 @@
-<nav>
-  <div class="ui borderless main menu">
-    <div class="ui text container">
-      <a class="header item" href="{{ url_for('main.index') }}">
-        Elastic Blog
-      </a>
+  <nav class="navbar">
 
-      <a href="{{ url_for('main.explore') }}" class="item">Explore</a>
-      {% if g.search_form %}
-          <div class="item">
-            <form class="ui form" method="get" action="{{ url_for('main.search') }}">
-              <div class="field ui icon input">
-                {{ g.search_form.q(placeholder=g.search_form.q.label.text) }}
-                <i class="search link icon"></i>
-              </div>
-            </form>
-          </div>
-      {% endif %}
+    <div class="navbar-brand">
 
-      {% if current_user.is_anonymous %}
-      <div class="ui right item">
-        <a href="{{ url_for('account.login') }}" class="item">Login</a>
-        <a href="{{ url_for('account.register') }}" class="item">Register</a>
+        <a class="navbar-item" href="">
+          ELASTIC BLOG
+        </a>
+<div class="navbar-burger" data-target="navMenu">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
       </div>
 
-      {% else %}
-      <div class="ui right floated dropdown item">
-        Hello {{ current_user.username }} <i class="dropdown icon"></i>
-        <div class="menu">
-          <a href="{{ url_for('account.logout') }}" class="item">Logout</a>
+<div class="navbar-menu" id="navMenu">
+
+        <div class="navbar-start">
+          <a class="navbar-item" href="{{ url_for('main.index') }}">
+            Post
+          </a>
+          <a class="navbar-item" href="{{ url_for('main.search') }}">
+            Explore
+          </a>
         </div>
+
+      <div class="navbar-end">
+        {% if current_user.is_anonymous %}
+          <a href="{{ url_for('account.login') }}" class="navbar-item">Login</a>
+          <a href="{{ url_for('account.register') }}" class="navbar-item">Register</a>
+        {% else %}
+        <a href="#" class="navbar-item">Hello {{ current_user.username }}</a>
+          <a href="{{ url_for('account.logout') }}" class="navbar-item">Logout</a>
+        {% endif %}
       </div>
-      {% endif %}
 
     </div>
-  </div>
 </nav>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+
+      });
+    });
+  }
+
+  });
+  </script>
