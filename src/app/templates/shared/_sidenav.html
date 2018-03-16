@@ -1,0 +1,23 @@
+<nav class="nav has-shadow">
+  <div class="container">
+    <div class="nav-left">
+      <a class="nav-item">
+      </a>
+    </div>
+    <label for="menu-toggle" class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <input type="checkbox" id="menu-toggle" class="is-hidden"/>
+    <div class="nav-right nav-menu">
+      <div class="container" style="padding-left:15px">
+        {% for category in categories %}
+          <a class="nav-item is-tab is-hidden-tablet"  href="{{
+            url_for('main.get_post_by_category', id=category.id)}}">
+            {{category.name}}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</nav>

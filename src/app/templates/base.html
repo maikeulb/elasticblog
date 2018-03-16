@@ -13,6 +13,15 @@
 
       <style>
 
+        .site  {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        } 
+        .site-content  {
+        flex: 1;
+        } 
+
         .columns {
           margin: 0;
         }
@@ -24,16 +33,35 @@
                 margin-top: -0.75rem;
              }
           }
+
+        @media screen and (min-width: 768px) {
+            footer {
+                margin-left: 3rem;
+                margin-right: 3rem;
+                margin-bottom: 1rem;
+             }
+          }
+
+        @media screen and (min-width: 768px) {
+            .navbar {
+                margin-left: 5rem;
+                margin-right: 5rem;
+                margin-bottom: 1rem;
+             }
+          }
+
+
+
       </style>
   </head>
 
-  <body>
+  <body class="site">
     {% block navbar %}
       {% include '/shared/_navbar.html' %}
     {% endblock %}
 
     {% block content %}
-      <div class="container">
+      <div class="container site-content">
         {% with messages = get_flashed_messages() %}
           {% if messages %}
             <script>

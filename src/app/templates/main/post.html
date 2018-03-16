@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+  <main id = "app" class="container">
+  {% include "shared/_sidenav.html" %}
+    <section class="main-content columns is-fullheight">
+      {% include "shared/_sidenav_aside.html" %}
+
+      <div class="container column is-10">
+        {% if form %}
+          <form action="" method="post" class="field">
+              {{ form.hidden_tag() }}
+            <div class="field">
+              <div class="control">
+                {{ form.title.label(class_="label") }}<br>
+                {{ form.title(class_="input") }}
+              </div>
+              </div>
+            <div class="field">
+              <div class="control">
+                {{ form.body.label(class_="label") }}<br>
+                {{ form.body(class_="textarea") }}
+              </div>
+              </div>
+            <div class="field">
+              <div class="control">
+                {{ form.category_id.label(class_="label") }}<br>
+                <div class="select">
+                  {{ form.category_id(class_="select is-fullwidth") }}
+                </div>
+              </div>
+              </div>
+            <div class="field">
+              <div class="control">
+                {{ form.tags.label(class_="label") }}<br>
+                {{ form.tags(class_="input") }}
+              </div>
+              </div>
+              {{ form.submit(class="ui button") }}
+          </form>
+        {% endif %}
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

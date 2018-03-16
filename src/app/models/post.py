@@ -28,6 +28,7 @@ class Post(SearchableMixin, db.Model):
     category = db.relationship(
         'Category',
         backref='post',
+        lazy='select',
     )
 
     tags = db.relationship(
