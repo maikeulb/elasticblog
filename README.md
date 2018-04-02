@@ -13,7 +13,8 @@ Technology
 
 Screenshot
 ---
-[TODO]
+![post](/screenshots/post.png?raw=true "Post")
+![index](/screenshots/index.png?raw=true "Post")
 
 Run
 ---
@@ -24,8 +25,8 @@ docker-compose up
 Go to http://localhost:5000
 ```
 
-Otherwise, go to config.py and point the PostgreSQL and Elasticsearch variables
-so that they point to your server URI's, set the FLASK_APP env variable to
+Otherwise, go to `config.py` and point the PostgreSQL and Elasticsearch variables
+so that they point to your server URI's, set the `FLASK_APP` env variable to
 elasticblog.py, and pip install the requirements. 
 
 After all that has been taken care of,

@@ -27,7 +27,7 @@ def register(app):
         life = Category(
             name='life')
         yoga = Category(
-            name='stationary')
+            name='yoga')
         school = Category(
             name='school')
         photography = Category(
