@@ -20,10 +20,10 @@ class Post(SearchableMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     title = db.Column(db.String(45))
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
 
     category = db.relationship(
         'Category',
