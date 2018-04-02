@@ -24,16 +24,19 @@ def register(app):
 
     def seed_categories():
         print('Adding categories')
-        notebooks = Category(
-            name='notebooks')
-        pens = Category(
-            name='pens and pencils')
-        desk = Category(
-            name='desk accessories')
+        life = Category(
+            name='life')
+        yoga = Category(
+            name='stationary')
+        school = Category(
+            name='school')
+        photography = Category(
+            name='photography')
 
-        db.session.add(notebooks)
-        db.session.add(pens)
-        db.session.add(desk)
+        db.session.add(life)
+        db.session.add(yoga)
+        db.session.add(school)
+        db.session.add(photography)
 
     @click.command()
     @click.option('-f', '--fix-imports', default=False, is_flag=True,

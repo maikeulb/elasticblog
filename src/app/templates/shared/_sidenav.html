@@ -15,7 +15,7 @@
         {% for category in categories %}
           <a class="nav-item is-tab is-hidden-tablet"  href="{{
             url_for('main.get_post_by_category', id=category.id)}}">
-            {{category.name}}</a>
+            {{category.name | upper}}</a>
         {% endfor %}
       </div>
     </div>

@@ -3,7 +3,7 @@
   <ul class="menu-list">
     {% for category in categories %}
     <li><a href="{{url_for('main.get_post_by_category', id=category.id)}}">
-        {{category.name}}</a>
+        {{category.name | upper}}</a>
     </li>
     {% endfor %}
   </ul>
