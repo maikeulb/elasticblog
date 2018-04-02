@@ -6,7 +6,6 @@ through blog posts.
 
 Technology:
 -----------
-<hr>
 * Flask
 * PostgreSQL
 * Elasticsearch
