@@ -9,19 +9,17 @@ from flask import (
     current_app
 )
 from flask_login import current_user, login_required
-from app.extensions import login, db
+from app.extensions import db
 from app.main import main
 from app.main.forms import (
     PostForm,
     SearchForm,
 )
 from app.models import (
-    User,
     Post,
     Tag,
     Category,
 )
-from flask import jsonify
 
 
 @main.before_app_request

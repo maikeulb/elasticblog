@@ -7,7 +7,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or \
         'postgresql://postgres:P@ssw0rd!@172.17.0.2/elasticblog'
     ELASTICSEARCH_URL = os.environ.get('ELASTIC_URI') or \
-        'http://172.17.0.3'
+        'http://172.17.0.6'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     POSTS_PER_PAGE = 10
@@ -22,3 +22,7 @@ class Config(object):
 class DevelopmentConfig(Config):
     DEBUG = True
     DEVELOPMENT = True
+
+
+class ProductionConfig(Config):
+    PRODUCTION = True

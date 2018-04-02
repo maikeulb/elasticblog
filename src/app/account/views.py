@@ -12,14 +12,13 @@ from flask_login import (
     current_user,
     login_required
 )
-from werkzeug.urls import url_parse
 from app.account import account
 from app.account.forms import (
     LoginForm,
     RegistrationForm,
 )
 from app.models import User
-from app.extensions import login, db
+from app.extensions import db
 
 
 @account.route('/login', methods=['GET', 'POST'])

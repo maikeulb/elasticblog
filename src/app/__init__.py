@@ -1,12 +1,10 @@
 import config
 import os
-
-from flask import(
+from flask import (
     Flask,
     render_template,
-    request,
     current_app)
-from app.extensions import(
+from app.extensions import (
     bcrypt,
     csrf_protect,
     db,
