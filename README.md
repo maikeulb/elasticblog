@@ -21,7 +21,7 @@ Filter posts by category or tags, or perform a search.
 
 Run
 ---
-If you have docker installed,
+With docker:
 ```
 docker-compose build
 docker-compose up
@@ -31,9 +31,12 @@ Go to http://localhost:5000
 Alternatively, create a database named 'elasticblog', open `config.py` and
 point the PostgreSQL and Elasticsearch URIs to your servers, set the
 `FLASK_APP` env variable to elasticblog.py, and install dependencies (e.g. `pip
-install -r requirements.txt`).
+install -r requirements.txt`). Be sure to install the
+python dependencies using `requirements.txt` located in `./elasticblog/`, not
+`./elasticblog/requirements/` (I'm working on pruning the dev/prod/test dependencies).
 
-`cd` into `./src` (if you are not already) and run the following:
+
+`cd` into `./elasticblog` (if you are not already); then run:
 ```
 flask db upgrade
 flask seed-db
